@@ -65,6 +65,15 @@ namespace WpfApp5
             teachers.Add(teacher3);
 
             tvTeacher.ItemsSource = teachers;
+            foreach (Teacher teacher in teachers)
+            { 
+              foreach (Course course in teacher.TeachingCourses)
+                {
+                    courses.Add(course);
+                }
+                
+            }
+            lbcourse.ItemsSource = courses;
 
         }
 
