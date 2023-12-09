@@ -19,5 +19,14 @@ namespace WpfApp5
         
         
         }
+
+        public override string ToString()
+        {
+            return $"{CourseName} {Type} {Point} {OpeningClass}";
+        }
+
+       
+
+
     }
 }

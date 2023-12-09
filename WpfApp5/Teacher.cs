@@ -17,5 +17,9 @@ namespace WpfApp5
         
         }
 
+        public override string ToString()
+        {
+            return $"{TeacherName}";
+        }
     }
 }

@@ -24,7 +24,7 @@
         </StackPanel>
         <TabControl Grid.Row="1"  >
             <TabItem Header="以教師分類的課程" FontWeight="Bold">
-                <TreeView x:Name="tvTeacher" ItemsSource="{Binding teachers}">
+                <TreeView x:Name="tvTeacher" ItemsSource="{Binding teachers}" SelectedItemChanged="tvTeacher_SelectedItemChanged">
                     <TreeView.Resources>
                         <!-- 教師節點的樣式 -->
                         <HierarchicalDataTemplate DataType="{x:Type local:Teacher}" ItemsSource="{Binding TeachingCourses}">
@@ -53,7 +53,7 @@
                 </TreeView>
             </TabItem>
             <TabItem Header="所有課程" FontWeight="Bold">
-                <ListBox x:Name="lbcourse" Background="#FFFAF6E0">
+                <ListBox x:Name="lbcourse" Background="#FFFAF6E0" SelectionChanged="lbcourse_SelectionChanged">
                     <ListBox.Resources>
                         <DataTemplate DataType="{x:Type local:Course}">
                             <StackPanel Orientation="Vertical">
@@ -79,15 +79,22 @@
         </TabControl>
         <StackPanel Grid.Row="1" Grid.Column="1">
             <Button x:Name="btnRegister" Content="選課" Width="80" Height="50" VerticalAlignment="Center" 
-                    Margin="0,100,0,0" FontSize="14" FontWeight="Bold" />
+                    Margin="0,100,0,0" FontSize="14" FontWeight="Bold" Click="btnRegister_Click" />
             <Button x:Name="btnWithdrawl" Content="退選" Width="80" Height="50" VerticalAlignment="Center" 
                     Margin="0,20,0,0" FontSize="14" FontWeight="Bold" />
             <Button x:Name="btnSave" Content="儲存紀錄" Width="80" Height="50" VerticalAlignment="Center" 
                     Margin="0,20,0,0" FontSize="14" FontWeight="Bold" />
         </StackPanel>
-        <ListView Grid.Row="1" Grid.Column="2"  Background="#FFE3F7F0" />
+        <ListView x:Name="lvRecord" Grid.Row="1" Grid.Column="2"  Background="#FFE3F7F0" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="學號" DisplayMemberBinding="{Binding}" Width="100" /> 
+                                    
+                </GridView>
+            </ListView.View>
+        </ListView>
         <StatusBar Grid.Row="2" Grid.ColumnSpan="3">
-            <Label x:Name="labelStudent" Content="狀態列" Width="300" Height="30"
+            <Label x:Name="labelStatus" Content="狀態列" Width="300" Height="30"
                    VerticalAlignment="Center" HorizontalAlignment="Left" Margin="100,0,0,0" />
         </StatusBar>
         
