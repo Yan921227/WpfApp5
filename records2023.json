@@ -1,0 +1,201 @@
+{
+  "$id": "1",
+  "$values": [
+    {
+      "$id": "2",
+      "SelectedStudent": {
+        "$id": "3",
+        "StudentId": "A1234567",
+        "StudentName": "陳大明"
+      },
+      "SelectedCourse": {
+        "$id": "4",
+        "CourseName": "Android程式",
+        "Type": "選修",
+        "Point": 3,
+        "OpeningClass": "五專四甲",
+        "Tutor": {
+          "$id": "5",
+          "TeacherName": "李宗儒",
+          "TeachingCourses": {
+            "$id": "6",
+            "$values": [
+              {
+                "$ref": "4"
+              },
+              {
+                "$id": "7",
+                "CourseName": "人工智慧與應用",
+                "Type": "選修",
+                "Point": 3,
+                "OpeningClass": "博研電子一甲合開",
+                "Tutor": {
+                  "$ref": "5"
+                }
+              },
+              {
+                "$id": "8",
+                "CourseName": "動態程式語言",
+                "Type": "選修",
+                "Point": 3,
+                "OpeningClass": "四技資工三甲等合開",
+                "Tutor": {
+                  "$ref": "5"
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "$id": "9",
+      "SelectedStudent": {
+        "$ref": "3"
+      },
+      "SelectedCourse": {
+        "$id": "10",
+        "CourseName": "圖像化程式設計實習",
+        "Type": "系定選修",
+        "Point": 3,
+        "OpeningClass": "五專資工一丙",
+        "Tutor": {
+          "$id": "11",
+          "TeacherName": "鄧瑞哲",
+          "TeachingCourses": {
+            "$id": "12",
+            "$values": [
+              {
+                "$id": "13",
+                "CourseName": "微積分(一)",
+                "Type": "必修",
+                "Point": 3,
+                "OpeningClass": "四技資工一丙",
+                "Tutor": {
+                  "$ref": "11"
+                }
+              },
+              {
+                "$id": "14",
+                "CourseName": "圖像化程式設計",
+                "Type": "系定選修",
+                "Point": 3,
+                "OpeningClass": "五專資工一丙",
+                "Tutor": {
+                  "$ref": "11"
+                }
+              },
+              {
+                "$ref": "10"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "$id": "15",
+      "SelectedStudent": {
+        "$id": "16",
+        "StudentId": "A1234669",
+        "StudentName": "張大胖"
+      },
+      "SelectedCourse": {
+        "$id": "17",
+        "CourseName": "視窗程式設計",
+        "Type": "選修",
+        "Point": 3,
+        "OpeningClass": "四技二丙",
+        "Tutor": {
+          "$id": "18",
+          "TeacherName": "陳定宏",
+          "TeachingCourses": {
+            "$id": "19",
+            "$values": [
+              {
+                "$id": "20",
+                "CourseName": "視窗程式設計",
+                "Type": "選修",
+                "Point": 3,
+                "OpeningClass": "四技二甲",
+                "Tutor": {
+                  "$ref": "18"
+                }
+              },
+              {
+                "$id": "21",
+                "CourseName": "視窗程式設計",
+                "Type": "選修",
+                "Point": 3,
+                "OpeningClass": "四技二乙",
+                "Tutor": {
+                  "$ref": "18"
+                }
+              },
+              {
+                "$ref": "17"
+              },
+              {
+                "$id": "22",
+                "CourseName": "視窗程式設計",
+                "Type": "必選",
+                "Point": 3,
+                "OpeningClass": "五專三甲",
+                "Tutor": {
+                  "$ref": "18"
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "$id": "23",
+      "SelectedStudent": {
+        "$ref": "16"
+      },
+      "SelectedCourse": {
+        "$ref": "4"
+      }
+    },
+    {
+      "$id": "24",
+      "SelectedStudent": {
+        "$ref": "16"
+      },
+      "SelectedCourse": {
+        "$ref": "14"
+      }
+    },
+    {
+      "$id": "25",
+      "SelectedStudent": {
+        "$id": "26",
+        "StudentId": "A1234507",
+        "StudentName": "黃小龍"
+      },
+      "SelectedCourse": {
+        "$ref": "22"
+      }
+    },
+    {
+      "$id": "27",
+      "SelectedStudent": {
+        "$ref": "16"
+      },
+      "SelectedCourse": {
+        "$ref": "7"
+      }
+    },
+    {
+      "$id": "28",
+      "SelectedStudent": {
+        "$ref": "26"
+      },
+      "SelectedCourse": {
+        "$ref": "14"
+      }
+    }
+  ]
+}

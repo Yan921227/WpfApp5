@@ -10,5 +10,11 @@ namespace WpfApp5
     {
         public   Student SelectedStudent { get; set; }
        public Course SelectedCourse { get; set; }
+
+        public bool Equals(Record r) //人與課不重複
+        {
+            return this . SelectedStudent.StudentId == r.SelectedStudent.StudentId &&
+                this.SelectedCourse .CourseName == r.SelectedCourse .CourseName;
+        }
     }
 }

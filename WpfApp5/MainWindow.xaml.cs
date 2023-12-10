@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,6 +15,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
+using System.IO;
 
 namespace WpfApp5
 {
@@ -30,7 +34,7 @@ namespace WpfApp5
         List<Teacher> teachers = new List<Teacher>();
         Teacher selectedTeacher = null;
 
-        List <Record> records = new List<Record>();
+        List<Record> records = new List<Record>();
         Record selectedRecord = null;
         public MainWindow()
         {
@@ -89,7 +93,7 @@ namespace WpfApp5
             students.Add(new Student { StudentId = "A1234567", StudentName = "陳大明" });
             students.Add(new Student { StudentId = "A1234789", StudentName = "王大美" });
             students.Add(new Student { StudentId = "A1234669", StudentName = "張大胖" });
-            students.Add(new Student { StudentId = "A1234567", StudentName = "黃小龍" });
+            students.Add(new Student { StudentId = "A1234507", StudentName = "黃小龍" });
 
             cmbStudent.ItemsSource = students;
             cmbStudent.SelectedIndex = 0;
@@ -133,8 +137,56 @@ namespace WpfApp5
             else
             {
                 Record newRecord = new Record { SelectedStudent = selectedStudent, SelectedCourse = selectedCourse };
+
+                foreach (Record r in records)
+                {
+                    if (newRecord.Equals(r))
+                    {
+                        MessageBox.Show($"{selectedStudent.StudentName}已選取  {selectedCourse.CourseName}");
+                        return;
+                    }
+                }
                 records.Add(newRecord);
-                lvRecord .ItemsSource= records;
+                lvRecord.ItemsSource = records;
+                lvRecord.Items.Refresh();
+            }
+        }
+
+        private void lvRecord_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lvRecord.SelectedItem != null)
+            {
+                selectedRecord = (Record)lvRecord.SelectedItem;
+                labelStatus.Content = $"選取紀錄 : {selectedRecord.SelectedStudent.StudentName}{selectedRecord.SelectedCourse.CourseName}";
+            }
+        }
+
+        private void btnWithdrawl_Click(object sender, RoutedEventArgs e)
+        {
+            if (selectedRecord != null)
+            {
+                records.Remove(selectedRecord);
+                lvRecord.Items.Refresh();
+            }
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            //開啟一個對話方塊，將records內容存成json 檔，使用Microsoft提供的Json類別
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*";
+           
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                var options = new JsonSerializerOptions
+                {
+                    WriteIndented = true,
+                    ReferenceHandler = ReferenceHandler.Preserve,
+                    Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+                };
+
+                string json = JsonSerializer.Serialize(records, options);
+                File.WriteAllText(saveFileDialog.FileName, json);
             }
         }
     }
