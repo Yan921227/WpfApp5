@@ -81,15 +81,20 @@
             <Button x:Name="btnRegister" Content="選課" Width="80" Height="50" VerticalAlignment="Center" 
                     Margin="0,100,0,0" FontSize="14" FontWeight="Bold" Click="btnRegister_Click" />
             <Button x:Name="btnWithdrawl" Content="退選" Width="80" Height="50" VerticalAlignment="Center" 
-                    Margin="0,20,0,0" FontSize="14" FontWeight="Bold" />
+                    Margin="0,20,0,0" FontSize="14" FontWeight="Bold" Click="btnWithdrawl_Click" />
             <Button x:Name="btnSave" Content="儲存紀錄" Width="80" Height="50" VerticalAlignment="Center" 
-                    Margin="0,20,0,0" FontSize="14" FontWeight="Bold" />
+                    Margin="0,20,0,0" FontSize="14" FontWeight="Bold" Click="btnSave_Click" />
         </StackPanel>
-        <ListView x:Name="lvRecord" Grid.Row="1" Grid.Column="2"  Background="#FFE3F7F0" >
+        <ListView x:Name="lvRecord" Grid.Row="1" Grid.Column="2"  Background="#FFE3F7F0" ItemsSource="{Binding records}" SelectionChanged="lvRecord_SelectionChanged">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="學號" DisplayMemberBinding="{Binding}" Width="100" /> 
-                                    
+                    <GridViewColumn Header="學號" DisplayMemberBinding="{Binding SelectedStudent.StudentId}" Width="100" />
+                    <GridViewColumn Header="姓名" DisplayMemberBinding="{Binding SelectedStudent.StudentName}" Width="100" />
+                    <GridViewColumn Header="課程名稱" DisplayMemberBinding="{Binding SelectedCourse.Type}" Width="100" />
+                    <GridViewColumn Header="授課教師" DisplayMemberBinding="{Binding SelectedCourse.Tutor.TeacherName}" Width="100" />
+                    <GridViewColumn Header="學分數" DisplayMemberBinding="{Binding SelectedCourse.Point}" Width="100" />
+                    <GridViewColumn Header="開課班級" DisplayMemberBinding="{Binding SelectedCourse.OpeningClass}" Width="100" />
+
                 </GridView>
             </ListView.View>
         </ListView>
